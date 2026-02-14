@@ -1,26 +1,47 @@
+using System;
+
 namespace ATMApp.Services
 {
-    public static class BankingServices
+    public static class BankingService
     {
-        // Option 1: Pass-by-value
+
         public static double GetBalance(double balance)
         {
             return balance;
         }
 
-        // Option 2: ref (Deposit)
+   
         public static bool Deposit(ref double balance, double amount)
         {
-            return false; //placeholder return value, replace with actual implementation
+            if (amount > 0)
+            {
+                balance += amount; 
+                return true;  
+            }
+            return false;  
         }
 
-        // Option 3: ref + out (Withdraw)
-        public static void Withdraw(
-            ref double balance,
-            double amount,
-            out bool isSuccessful)
+        public static void Withdraw(ref double balance, double amount, out bool isSuccessful)
         {
-            isSuccessful = false; //placeholder value, replace with actual implementation
+
+            if (amount > 0 && amount <= balance)
+            {
+                balance -= amount;  
+                isSuccessful = true;  
+            }
+            else
+            {
+                isSuccessful = false;  
+            }
+        }
+
+        public static void PrintMiniStatement(string name, double balance, double lastTransaction)
+        {
+
+            Console.WriteLine("\n--- Mini Statement ---");
+            Console.WriteLine($"Account Holder: {name}");
+            Console.WriteLine($"Current Balance: ₱{balance:F2}");
+            Console.WriteLine($"Last Transaction Amount: ₱{lastTransaction:F2}");
         }
     }
 }
