@@ -4,7 +4,7 @@ public class Program
     {
       
         BankingView view = new BankingView();
-        double balance = 1000.0; // Initial balance
+        double balance = 1000.0; 
         string name = "Bill Zaire R. Sevillano"; 
         double lastTransaction = 0.0;
 
@@ -18,14 +18,14 @@ public class Program
 
             string choice = view.GetMenuChoice();
 
-            // Switch-case to handle different options
+            
             switch (choice)
             {
-                case "1": // Check Balance
+                case "1":
                     view.ShowCurrentBalance(BankingService.GetBalance(balance));
                     break;
 
-                case "2": // Deposit Money
+                case "2": 
                     double depositAmount = view.GetDepositAmount();
                     if (BankingService.Deposit(ref balance, depositAmount))
                     {
